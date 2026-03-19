@@ -21,7 +21,8 @@
   "feat4": {
     "tag": "AIS",
     "title": "Live Vessel Tracking",
-    "desc": "See where every ship is right now. AIS positions, speed, draught and ETA — all visible directly from the fleet list."
+    "desc": "See where every ship is right now. AIS positions, speed, draught and ETA — all visible directly from the fleet list.",
+    "image": "/images/bild1.jpeg"
   },
   "feat5": {
     "tag": "Team",
