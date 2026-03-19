@@ -223,7 +223,7 @@
       <div class="feat-desc" data-cms="feat_1_desc">15 years of ship sales prices included in our base package. Add or edit when you know better.</div>
     </div>
     <div class="feature-img">
-      <img src="images/feature-valuations.png" alt="Valuation chart" onerror="this.style.display='none'">
+      <img data-cms="feat_1_img" src="images/feature-valuations.png" alt="Valuation chart" onerror="this.style.display='none'">
     </div>
   </div>
 
@@ -234,7 +234,7 @@
       <div class="feat-desc" data-cms="feat_2_desc">Connect your email via IMAP/SMTP. AI automatically links every email to the right ship and extracts sale statuses and purchase enquiries — no manual work required.</div>
     </div>
     <div class="feature-img">
-      <img src="images/feature-email.png" alt="AI email summary" onerror="this.style.display='none'">
+      <img data-cms="feat_2_img" src="images/feature-email.png" alt="AI email summary" onerror="this.style.display='none'">
     </div>
   </div>
 
@@ -245,7 +245,7 @@
       <div class="feat-desc" data-cms="feat_3_desc">IHS World fleet integrated. Quick search or advanced search by ship criteria. Segment specific views available.</div>
     </div>
     <div class="feature-img">
-      <img src="images/feature-fleet.png" alt="Fleet search" onerror="this.style.display='none'">
+      <img data-cms="feat_3_img" src="images/feature-fleet.png" alt="Fleet search" onerror="this.style.display='none'">
     </div>
   </div>
 
@@ -256,7 +256,7 @@
       <div class="feat-desc" data-cms="feat_4_desc">See where every ship is right now. AIS positions, speed, draught and ETA — all visible directly from the fleet list.</div>
     </div>
     <div class="feature-img">
-      <img src="images/feature-ais.png" alt="AIS map" onerror="this.style.display='none'">
+      <img data-cms="feat_4_img" src="images/feature-ais.png" alt="AIS map" onerror="this.style.display='none'">
     </div>
   </div>
 
@@ -267,7 +267,7 @@
       <div class="feat-desc" data-cms="feat_5_desc">All your team logs about the ships, available in seconds. No one else sees it!</div>
     </div>
     <div class="feature-img">
-      <img src="images/feature-team.png" alt="Team log" onerror="this.style.display='none'">
+      <img data-cms="feat_5_img" src="images/feature-team.png" alt="Team log" onerror="this.style.display='none'">
     </div>
   </div>
 </div>
@@ -407,7 +407,10 @@
           set('[data-cms="feat_' + i + '_desc"]', feat.desc);
           if (feat.image) {
             const img = document.querySelector('[data-cms="feat_' + i + '_img"]');
-            if (img) img.src = feat.image;
+            if (img) {
+              img.src = feat.image;
+              img.style.display = 'block';
+            }
           }
         }
       }
