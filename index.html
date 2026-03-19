@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>seefleet — Private interactive fleet database</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Decap CMS identity widget -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --navy: #1B2D3E;
+    --teal: #4BC8A0;
+    --bg: #F8F9FA;
+    --white: #FFFFFF;
+    --muted: #6B7A8A;
+    --border: #EBEBEB;
+  }
+  body { font-family:"Inter",sans-serif; background:var(--white); color:var(--navy); }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:28px 140px; background:var(--white); border-bottom:1px solid var(--border); }
+  .logo { font-family:"Plus Jakarta Sans",sans-serif; font-size:26px; font-weight:600; letter-spacing:-0.5px; text-decoration:none; }
+  .logo .see { color:var(--navy); }
+  .logo .fleet { color:var(--teal); }
+  .nav-right { display:flex; gap:12px; align-items:center; }
+  .btn-signin { color:var(--navy); padding:10px 22px; border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; border:1.5px solid rgba(27,45,62,0.18); opacity:0.65; font-family:"Inter",sans-serif; }
+  .btn-demo-nav { background:var(--navy); color:var(--white); padding:10px 24px; border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; font-family:"Inter",sans-serif; }
+
+  .hero { background:var(--white); padding:160px 140px 140px; }
+  .hero h1 { font-family:"Plus Jakarta Sans",sans-serif; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-2px; color:var(--navy); max-width:780px; margin-bottom:36px; }
+  .hero p { font-size:19px; color:var(--muted); line-height:1.75; max-width:480px; margin-bottom:56px; font-weight:400; }
+  .hero-btns { display:flex; gap:14px; }
+  .btn-primary { background:var(--navy); color:var(--white); padding:14px 34px; border-radius:100px; font-size:15px; font-weight:500; text-decoration:none; font-family:"Inter",sans-serif; }
+  .btn-ghost { color:var(--navy); padding:13px 32px; border-radius:100px; font-size:15px; font-weight:500; text-decoration:none; border:1.5px solid rgba(27,45,62,0.2); font-family:"Inter",sans-serif; }
+
+  .stats-wrap { background:var(--white); padding:0 140px 140px; }
+  .stats { background:var(--navy); border-radius:20px; padding:44px 0; display:grid; grid-template-columns:repeat(4,1fr); }
+  .stat { text-align:center; padding:0 24px; }
+  .stat + .stat { border-left:1px solid rgba(255,255,255,0.1); }
+  .stat-n { font-family:"Plus Jakarta Sans",sans-serif; font-size:32px; font-weight:600; color:var(--teal); letter-spacing:-0.5px; }
+  .stat-l { font-size:13px; color:rgba(255,255,255,0.42); margin-top:8px; font-weight:400; }
+
+  .overview { padding:140px 140px; background:var(--white); border-top:1px solid var(--border); }
+  .overview-header { margin-bottom:80px; }
+  .overview-header h2 { font-family:"Plus Jakarta Sans",sans-serif; font-size:42px; font-weight:600; color:var(--navy); letter-spacing:-1px; line-height:1.1; margin-bottom:16px; }
+  .overview-header p { font-size:17px; color:var(--muted); line-height:1.7; max-width:560px; }
+  .overview-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:56px; }
+  .ov-title { font-family:"Plus Jakarta Sans",sans-serif; font-size:18px; font-weight:600; color:var(--navy); margin-bottom:12px; }
+  .ov-desc { font-size:15px; color:var(--muted); line-height:1.7; font-weight:400; }
+
+  .features { padding:140px 140px; background:var(--bg); }
+  .section-eye { font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); margin-bottom:18px; }
+  .section-title { font-family:"Plus Jakarta Sans",sans-serif; font-size:42px; font-weight:600; color:var(--navy); letter-spacing:-1px; margin-bottom:100px; line-height:1.1; }
+
+  .feature-row { display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; margin-bottom:140px; }
+  .feature-row:last-child { margin-bottom:0; }
+  .feature-row.reverse { direction:rtl; }
+  .feature-row.reverse > * { direction:ltr; }
+
+  .feat-tag { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:20px; display:block; }
+  .feat-title { font-family:"Plus Jakarta Sans",sans-serif; font-size:34px; font-weight:600; color:var(--navy); letter-spacing:-0.8px; line-height:1.15; margin-bottom:20px; }
+  .feat-desc { font-size:17px; color:var(--muted); line-height:1.8; font-weight:400; }
+
+  .feature-img {
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 4px 32px rgba(27,45,62,0.06);
+    width:100%;
+    height:340px;
+    background:#f0f4f8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .feature-img img { width:100%; height:100%; object-fit:cover; border-radius:16px; }
+
+  .dark-section { background:var(--navy); padding:140px 140px; position:relative; overflow:hidden; }
+  .dark-section::before { content:""; position:absolute; top:0;left:0;right:0; height:60px; background:var(--bg); clip-path:ellipse(55% 100% at 50% 0%); }
+  .dark-inner { display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; position:relative; z-index:2; }
+  .dark-text .section-eye { color:rgba(75,200,160,0.8); }
+  .dark-text h2 { font-family:"Plus Jakarta Sans",sans-serif; font-size:46px; font-weight:600; color:var(--white); letter-spacing:-1.5px; line-height:1.1; margin-bottom:24px; }
+  .dark-text h2 em { font-style:normal; color:var(--teal); }
+  .dark-text p { color:rgba(255,255,255,0.45); font-size:17px; line-height:1.8; margin-bottom:40px; }
+  .phones { display:flex; gap:16px; justify-content:center; align-items:flex-end; }
+  .phone { background:#1e3347; border-radius:24px; width:130px; height:220px; border:2px solid rgba(255,255,255,0.07); padding:16px 12px; display:flex; flex-direction:column; gap:8px; }
+  .phone.tall { height:260px; }
+  .p-notch { width:30px; height:4px; background:rgba(255,255,255,0.14); border-radius:10px; margin:0 auto 6px; }
+  .pb { height:7px; background:rgba(255,255,255,0.1); border-radius:3px; }
+  .pb.t { background:rgba(75,200,160,0.4); }
+  .pb.w { background:rgba(255,255,255,0.2); }
+
+  .cta { padding:160px 140px; text-align:center; background:var(--white); }
+  .cta h2 { font-family:"Plus Jakarta Sans",sans-serif; font-size:56px; font-weight:600; color:var(--navy); letter-spacing:-2px; line-height:1.05; margin-bottom:24px; }
+  .cta h2 em { font-style:normal; color:var(--teal); }
+  .cta p { font-size:18px; color:var(--muted); margin-bottom:48px; }
+  .cta-btns { display:flex; gap:14px; justify-content:center; }
+
+  .footer-wave { background:var(--white); height:60px; overflow:hidden; position:relative; }
+  .footer-wave::after { content:""; position:absolute; bottom:0; left:0; right:0; height:120px; background:var(--navy); border-radius:50% 50% 0 0 / 60px 60px 0 0; }
+
+  footer { background:var(--navy); padding:48px 140px 52px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-logo .see { color:rgba(255,255,255,0.9); }
+  .footer-logo .fleet { color:var(--teal); }
+  footer p { color:rgba(255,255,255,0.28); font-size:13px; }
+  .footer-links a { color:rgba(255,255,255,0.35); font-size:13px; text-decoration:none; margin-left:24px; }
+  .footer-links a:hover { color:var(--teal); }
+
+  @media (max-width:900px) {
+    nav { padding:18px 24px; }
+    .hero { padding:80px 24px 64px; }
+    .hero h1 { font-size:38px; letter-spacing:-1px; }
+    .stats-wrap { padding:0 24px 64px; }
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .stat + .stat { border-left:none; }
+    .stat:nth-child(2) { border-left:1px solid rgba(255,255,255,0.1); }
+    .stat:nth-child(3),.stat:nth-child(4) { border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; margin-top:24px; }
+    .stat:nth-child(4) { border-left:1px solid rgba(255,255,255,0.1); }
+    .overview { padding:80px 24px; }
+    .overview-grid { grid-template-columns:1fr; gap:40px; }
+    .features { padding:80px 24px; }
+    .section-title { margin-bottom:64px; }
+    .feature-row { grid-template-columns:1fr; gap:40px; margin-bottom:80px; direction:ltr !important; }
+    .feature-img { height:240px; }
+    .dark-section { padding:80px 24px; }
+    .dark-inner { grid-template-columns:1fr; gap:56px; }
+    .dark-text h2 { font-size:34px; }
+    .cta { padding:80px 24px; }
+    .cta h2 { font-size:38px; }
+    footer { padding:40px 24px; flex-direction:column; align-items:flex-start; gap:24px; }
+    .footer-links a:first-child { margin-left:0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo"><span class="see">see</span><span class="fleet">fleet</span></a>
+  <div class="nav-right">
+    <a href="https://secure.seefleet.com/login" class="btn-signin">Sign in</a>
+    <a href="https://secure.seefleet.com/leads/new" class="btn-demo-nav">Get a demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1 data-cms="hero_headline">Let's talk about <span style="color:var(--teal)">ships.</span></h1>
+  <p data-cms="hero_subtext">Your private interactive fleet database. For shipbrokers, owners and operators — anyone dealing with shipping information.</p>
+  <div class="hero-btns">
+    <a href="https://secure.seefleet.com/leads/new" class="btn-primary" data-cms="hero_cta_primary">Get a demo</a>
+    <a href="https://secure.seefleet.com/login" class="btn-ghost" data-cms="hero_cta_secondary">Sign in</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-wrap">
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n" data-cms="stat_1_number">100k+</div>
+      <div class="stat-l" data-cms="stat_1_label">Vessels in the world fleet</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" data-cms="stat_2_number">15 yrs</div>
+      <div class="stat-l" data-cms="stat_2_label">of ship sales data</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" data-cms="stat_3_number">∞</div>
+      <div class="stat-l" data-cms="stat_3_label">Document storage</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" data-cms="stat_4_number">Days</div>
+      <div class="stat-l" data-cms="stat_4_label">to get your team up and running</div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="overview">
+  <div class="overview-header">
+    <h2 data-cms="overview_title">World fleet + team input, in your pocket.</h2>
+    <p data-cms="overview_subtitle">For shipbrokers, owners and operators — anyone dealing with shipping information really.</p>
+  </div>
+  <div class="overview-grid">
+    <div>
+      <div class="ov-title" data-cms="ov_1_title">Fleet Data</div>
+      <div class="ov-desc" data-cms="ov_1_desc">IHS World fleet integrated, "BYOD" (bring your own data). Quick search or advanced search by ship criteria.</div>
+    </div>
+    <div>
+      <div class="ov-title" data-cms="ov_2_title">Valuations</div>
+      <div class="ov-desc" data-cms="ov_2_desc">Automated asset values based on 15 years of comparable sales. See price history and add your own internal estimates.</div>
+    </div>
+    <div>
+      <div class="ov-title" data-cms="ov_3_title">Email + AI</div>
+      <div class="ov-desc" data-cms="ov_3_desc">Connect your inbox via IMAP. AI reads every email, links it to the right ship and extracts sale status and enquiries automatically.</div>
+    </div>
+    <div>
+      <div class="ov-title" data-cms="ov_4_title">AIS tracking</div>
+      <div class="ov-desc" data-cms="ov_4_desc">Live positions, speed, draught and ETA for every vessel — visible directly from your fleet list without switching tabs.</div>
+    </div>
+    <div>
+      <div class="ov-title" data-cms="ov_5_title">Team collaboration</div>
+      <div class="ov-desc" data-cms="ov_5_desc">All your team's logs and notes on each ship, available in seconds. Private to your company. No one else can see it.</div>
+    </div>
+    <div>
+      <div class="ov-title" data-cms="ov_6_title">Pitching tools</div>
+      <div class="ov-desc" data-cms="ov_6_desc">Generate clean vessel pitches from ship data in one click. Share or export — ready to send to buyers and sellers.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="section-eye">What you get</div>
+  <div class="section-title" data-cms="features_title">Everything a shipbroker needs.</div>
+
+  <div class="feature-row">
+    <div class="feature-text">
+      <span class="feat-tag" data-cms="feat_1_tag">Valuations</span>
+      <div class="feat-title" data-cms="feat_1_title">See Sales Prices</div>
+      <div class="feat-desc" data-cms="feat_1_desc">15 years of ship sales prices included in our base package. Add or edit when you know better.</div>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-valuations.png" alt="Valuation chart" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <div class="feature-row reverse">
+    <div class="feature-text">
+      <span class="feat-tag" data-cms="feat_2_tag">Email + AI</span>
+      <div class="feat-title" data-cms="feat_2_title">Smart Inbox</div>
+      <div class="feat-desc" data-cms="feat_2_desc">Connect your email via IMAP/SMTP. AI automatically links every email to the right ship and extracts sale statuses and purchase enquiries — no manual work required.</div>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-email.png" alt="AI email summary" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-text">
+      <span class="feat-tag" data-cms="feat_3_tag">Search</span>
+      <div class="feat-title" data-cms="feat_3_title">See Fleet</div>
+      <div class="feat-desc" data-cms="feat_3_desc">IHS World fleet integrated. Quick search or advanced search by ship criteria. Segment specific views available.</div>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-fleet.png" alt="Fleet search" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <div class="feature-row reverse">
+    <div class="feature-text">
+      <span class="feat-tag" data-cms="feat_4_tag">AIS</span>
+      <div class="feat-title" data-cms="feat_4_title">Live Vessel Tracking</div>
+      <div class="feat-desc" data-cms="feat_4_desc">See where every ship is right now. AIS positions, speed, draught and ETA — all visible directly from the fleet list.</div>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-ais.png" alt="AIS map" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-text">
+      <span class="feat-tag" data-cms="feat_5_tag">Team</span>
+      <div class="feat-title" data-cms="feat_5_title">See Team Input</div>
+      <div class="feat-desc" data-cms="feat_5_desc">All your team logs about the ships, available in seconds. No one else sees it!</div>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-team.png" alt="Team log" onerror="this.style.display='none'">
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE SECTION -->
+<div class="dark-section">
+  <div class="dark-inner">
+    <div class="dark-text">
+      <div class="section-eye">Mobile</div>
+      <h2>Your fleet in your <em>pocket.</em></h2>
+      <p data-cms="mobile_desc">Access seefleet from any device. Ship specs, positions, valuations and team notes — always at hand, whether you're in the office or at a conference.</p>
+      <a href="https://secure.seefleet.com/leads/new" class="btn-primary">Get a demo</a>
+    </div>
+    <div class="phones">
+      <div class="phone">
+        <div class="p-notch"></div>
+        <div class="pb w"></div><div class="pb t"></div><div class="pb"></div>
+        <div class="pb t" style="width:65%"></div><div class="pb" style="width:80%"></div>
+        <div class="pb t" style="width:50%"></div>
+      </div>
+      <div class="phone tall">
+        <div class="p-notch"></div>
+        <div class="pb w"></div><div class="pb t"></div><div class="pb"></div>
+        <div class="pb" style="width:90%"></div><div class="pb t" style="width:70%"></div>
+        <div class="pb" style="width:55%"></div><div class="pb t" style="width:85%"></div>
+        <div class="pb"></div>
+      </div>
+      <div class="phone">
+        <div class="p-notch"></div>
+        <div class="pb w"></div><div class="pb t" style="width:75%"></div><div class="pb"></div>
+        <div class="pb t"></div><div class="pb" style="width:60%"></div>
+        <div class="pb t" style="width:80%"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2 data-cms="cta_title">Let's get <em>started.</em></h2>
+  <p data-cms="cta_subtitle">Get up and running with a demo account for you or your whole team within days. No installations required.</p>
+  <div class="cta-btns">
+    <a href="https://secure.seefleet.com/leads/new" class="btn-primary">Get a demo</a>
+    <a href="https://secure.seefleet.com/login" class="btn-ghost">Sign in</a>
+  </div>
+</div>
+
+<div class="footer-wave"></div>
+
+<footer>
+  <a href="#" class="logo footer-logo"><span class="see">see</span><span class="fleet">fleet</span></a>
+  <p>© 2026 seefleet · Ekraveien 19, 0756 Oslo, Norway</p>
+  <div class="footer-links">
+    <a href="https://secure.seefleet.com/pages/terms">Terms &amp; Conditions</a>
+    <a href="https://secure.seefleet.com/pages/information-security">Information Security</a>
+    <a href="https://secure.seefleet.com/pages/privacy">Privacy Policy</a>
+    <a href="mailto:hello@seefleet.com">hello@seefleet.com</a>
+  </div>
+</footer>
+
+<!-- Redirect Netlify Identity after login -->
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
