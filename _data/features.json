@@ -4,12 +4,13 @@
     "tag": "Valuations",
     "title": "See Sales Prices",
     "desc": "15 years of ship sales prices included in our base package. Add or edit when you know better.",
-    "image": "/images/bild2.jpeg"
+    "image": ""
   },
   "feat2": {
     "tag": "Email + AI",
-    "title": "Smart Inbox",
-    "desc": "Connect your email via IMAP/SMTP. AI automatically links every email to the right ship and extracts sale statuses and purchase enquiries — no manual work required."
+    "title": "Smart Inboxxxxx",
+    "desc": "Connect your email via IMAP/SMTP. AI automatically links every email to the right ship and extracts sale statuses and purchase enquiries — no manual work required.",
+    "image": "/images/bild5.jpeg"
   },
   "feat3": {
     "tag": "Search",
