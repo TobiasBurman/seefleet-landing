@@ -14,7 +14,8 @@
   "feat3": {
     "tag": "Search",
     "title": "See Fleet",
-    "desc": "IHS World fleet integrated. Quick search or advanced search by ship criteria. Segment specific views available."
+    "desc": "IHS World fleet integrated. Quick search or advanced search by ship criteria. Segment specific views available.",
+    "image": "/images/bild2.jpeg"
   },
   "feat4": {
     "tag": "AIS",
