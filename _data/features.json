@@ -8,25 +8,26 @@
   },
   "feat2": {
     "tag": "Email + AI",
-    "title": "Smart Inboxxxxx",
+    "title": "Smart Inbox",
     "desc": "Connect your email via IMAP/SMTP. AI automatically links every email to the right ship and extracts sale statuses and purchase enquiries — no manual work required.",
-    "image": "/images/bild5.jpeg"
+    "image": ""
   },
   "feat3": {
     "tag": "Search",
     "title": "See Fleet",
     "desc": "IHS World fleet integrated. Quick search or advanced search by ship criteria. Segment specific views available.",
-    "image": "/images/bild2.jpeg"
+    "image": ""
   },
   "feat4": {
     "tag": "AIS",
     "title": "Live Vessel Tracking",
     "desc": "See where every ship is right now. AIS positions, speed, draught and ETA — all visible directly from the fleet list.",
-    "image": "/images/bild1.jpeg"
+    "image": ""
   },
   "feat5": {
     "tag": "Team",
     "title": "See Team Input",
-    "desc": "All your team logs about the ships, available in seconds. No one else sees it!"
+    "desc": "All your team logs about the ships, available in seconds. No one else sees it!",
+    "image": ""
   }
 }
