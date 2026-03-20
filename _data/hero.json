@@ -1,8 +1,8 @@
 {
-  "headline": "Let's talk about ships",
-  "subtext": "hej hej hej hhshdshashdhsadhashdhas",
-  "cta_primary": "hej",
-  "cta_primary_url": "då",
-  "cta_secondary": "hej ",
-  "cta_secondary_url": "d¨"
+  "headline": "Let's talk about ships.",
+  "subtext": "Your private interactive fleet database. For shipbrokers, owners and operators — anyone dealing with shipping information.",
+  "cta_primary": "Get a demo",
+  "cta_primary_url": "https://secure.seefleet.com/leads/new",
+  "cta_secondary": "Sign in",
+  "cta_secondary_url": "https://secure.seefleet.com/login"
 }
