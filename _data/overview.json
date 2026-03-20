@@ -1,7 +1,7 @@
 {
   "title": "World fleet + team input, in your pocket.",
   "subtitle": "For shipbrokers, owners and operators — anyone dealing with shipping information really.",
-  "item1": { "title": "Fleet Data", "desc": "IHS World fleet integrated, \"BYOD\" (bring your own data). Quick search or advanced search by ship criteria." },
+  "item1": { "title": "Fleet Data", "desc": "IHS World fleet integrated, BYOD (bring your own data). Quick search or advanced search by ship criteria." },
   "item2": { "title": "Valuations", "desc": "Automated asset values based on 15 years of comparable sales. See price history and add your own internal estimates." },
   "item3": { "title": "Email + AI", "desc": "Connect your inbox via IMAP. AI reads every email, links it to the right ship and extracts sale status and enquiries automatically." },
   "item4": { "title": "AIS tracking", "desc": "Live positions, speed, draught and ETA for every vessel — visible directly from your fleet list without switching tabs." },
