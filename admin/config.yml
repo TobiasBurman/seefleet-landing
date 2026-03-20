@@ -2,112 +2,109 @@ backend:
   name: git-gateway
   branch: main
 
-# Bilder laddas upp hit
+# Images are uploaded here
 media_folder: "images"
 public_folder: "/images"
 
-# Visa CMS direkt utan att publicera via Git (bra för test)
-publish_mode: editorial_workflow
-
 collections:
   - name: "settings"
-    label: "Seefleet — Redigera sidan"
+    label: "Seefleet — Edit page"
     files:
 
       - name: "hero"
-        label: "🏠 Hero — Startsektionen"
+        label: "🏠 Hero — Top section"
         file: "_data/hero.json"
         fields:
-          - { label: "Rubrik (rad 1)", name: "headline", widget: "string", default: "Let's talk about ships." }
-          - { label: "Undertext", name: "subtext", widget: "text", default: "Your private interactive fleet database." }
-          - { label: "Knapp 1 — text", name: "cta_primary", widget: "string", default: "Get a demo" }
-          - { label: "Knapp 1 — länk", name: "cta_primary_url", widget: "string", default: "https://secure.seefleet.com/leads/new" }
-          - { label: "Knapp 2 — text", name: "cta_secondary", widget: "string", default: "Sign in" }
-          - { label: "Knapp 2 — länk", name: "cta_secondary_url", widget: "string", default: "https://secure.seefleet.com/login" }
+          - { label: "Headline", name: "headline", widget: "string", default: "Let's talk about ships." }
+          - { label: "Subtext", name: "subtext", widget: "text", default: "Your private interactive fleet database." }
+          - { label: "Button 1 — text", name: "cta_primary", widget: "string", default: "Get a demo" }
+          - { label: "Button 1 — link", name: "cta_primary_url", widget: "string", default: "https://secure.seefleet.com/leads/new" }
+          - { label: "Button 2 — text", name: "cta_secondary", widget: "string", default: "Sign in" }
+          - { label: "Button 2 — link", name: "cta_secondary_url", widget: "string", default: "https://secure.seefleet.com/login" }
 
       - name: "stats"
-        label: "📊 Statistik — 4 siffror"
+        label: "📊 Statistics — 4 numbers"
         file: "_data/stats.json"
         fields:
           - label: "Stat 1"
             name: "stat1"
             widget: "object"
             fields:
-              - { label: "Siffra", name: "number", widget: "string", default: "100k+" }
+              - { label: "Number", name: "number", widget: "string", default: "100k+" }
               - { label: "Label", name: "label", widget: "string", default: "Vessels in the world fleet" }
           - label: "Stat 2"
             name: "stat2"
             widget: "object"
             fields:
-              - { label: "Siffra", name: "number", widget: "string", default: "15 yrs" }
+              - { label: "Number", name: "number", widget: "string", default: "15 yrs" }
               - { label: "Label", name: "label", widget: "string", default: "of ship sales data" }
           - label: "Stat 3"
             name: "stat3"
             widget: "object"
             fields:
-              - { label: "Siffra", name: "number", widget: "string", default: "∞" }
+              - { label: "Number", name: "number", widget: "string", default: "∞" }
               - { label: "Label", name: "label", widget: "string", default: "Document storage" }
           - label: "Stat 4"
             name: "stat4"
             widget: "object"
             fields:
-              - { label: "Siffra", name: "number", widget: "string", default: "Days" }
+              - { label: "Number", name: "number", widget: "string", default: "Days" }
               - { label: "Label", name: "label", widget: "string", default: "to get your team up and running" }
 
       - name: "overview"
-        label: "🗂 Overview — 6 funktioner"
+        label: "🗂 Overview — 6 features"
         file: "_data/overview.json"
         fields:
-          - label: "Rubrik"
+          - label: "Headline"
             name: "title"
             widget: "string"
             default: "World fleet + team input, in your pocket."
-          - label: "Undertext"
+          - label: "Subtext"
             name: "subtitle"
             widget: "text"
             default: "For shipbrokers, owners and operators."
-          - label: "Funktion 1"
+          - label: "Feature 1"
             name: "item1"
             widget: "object"
             fields:
-              - { label: "Titel", name: "title", widget: "string", default: "Fleet Data" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-          - label: "Funktion 2"
+              - { label: "Title", name: "title", widget: "string", default: "Fleet Data" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - label: "Feature 2"
             name: "item2"
             widget: "object"
             fields:
-              - { label: "Titel", name: "title", widget: "string", default: "Valuations" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-          - label: "Funktion 3"
+              - { label: "Title", name: "title", widget: "string", default: "Valuations" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - label: "Feature 3"
             name: "item3"
             widget: "object"
             fields:
-              - { label: "Titel", name: "title", widget: "string", default: "Email + AI" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-          - label: "Funktion 4"
+              - { label: "Title", name: "title", widget: "string", default: "Email + AI" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - label: "Feature 4"
             name: "item4"
             widget: "object"
             fields:
-              - { label: "Titel", name: "title", widget: "string", default: "AIS tracking" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-          - label: "Funktion 5"
+              - { label: "Title", name: "title", widget: "string", default: "AIS tracking" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - label: "Feature 5"
             name: "item5"
             widget: "object"
             fields:
-              - { label: "Titel", name: "title", widget: "string", default: "Team collaboration" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-          - label: "Funktion 6"
+              - { label: "Title", name: "title", widget: "string", default: "Team collaboration" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - label: "Feature 6"
             name: "item6"
             widget: "object"
             fields:
-              - { label: "Titel", name: "title", widget: "string", default: "Pitching tools" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
+              - { label: "Title", name: "title", widget: "string", default: "Pitching tools" }
+              - { label: "Description", name: "desc", widget: "text" }
 
       - name: "features"
-        label: "✨ Features — 5 feature-rader"
+        label: "✨ Features — 5 feature rows"
         file: "_data/features.json"
         fields:
-          - label: "Sektion-rubrik"
+          - label: "Section headline"
             name: "title"
             widget: "string"
             default: "Everything a shipbroker needs."
@@ -116,53 +113,53 @@ collections:
             widget: "object"
             fields:
               - { label: "Tag", name: "tag", widget: "string", default: "Valuations" }
-              - { label: "Titel", name: "title", widget: "string", default: "See Sales Prices" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-              - { label: "Bild", name: "image", widget: "image", required: false }
+              - { label: "Title", name: "title", widget: "string", default: "See Sales Prices" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false }
           - label: "Feature 2 — Email + AI"
             name: "feat2"
             widget: "object"
             fields:
               - { label: "Tag", name: "tag", widget: "string", default: "Email + AI" }
-              - { label: "Titel", name: "title", widget: "string", default: "Smart Inbox" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-              - { label: "Bild", name: "image", widget: "image", required: false }
+              - { label: "Title", name: "title", widget: "string", default: "Smart Inbox" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false }
           - label: "Feature 3 — Fleet"
             name: "feat3"
             widget: "object"
             fields:
               - { label: "Tag", name: "tag", widget: "string", default: "Search" }
-              - { label: "Titel", name: "title", widget: "string", default: "See Fleet" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-              - { label: "Bild", name: "image", widget: "image", required: false }
+              - { label: "Title", name: "title", widget: "string", default: "See Fleet" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false }
           - label: "Feature 4 — AIS"
             name: "feat4"
             widget: "object"
             fields:
               - { label: "Tag", name: "tag", widget: "string", default: "AIS" }
-              - { label: "Titel", name: "title", widget: "string", default: "Live Vessel Tracking" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-              - { label: "Bild", name: "image", widget: "image", required: false }
+              - { label: "Title", name: "title", widget: "string", default: "Live Vessel Tracking" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false }
           - label: "Feature 5 — Team"
             name: "feat5"
             widget: "object"
             fields:
               - { label: "Tag", name: "tag", widget: "string", default: "Team" }
-              - { label: "Titel", name: "title", widget: "string", default: "See Team Input" }
-              - { label: "Beskrivning", name: "desc", widget: "text" }
-              - { label: "Bild", name: "image", widget: "image", required: false }
+              - { label: "Title", name: "title", widget: "string", default: "See Team Input" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false }
 
       - name: "cta"
-        label: "📣 CTA — Avslutningssektionen"
+        label: "📣 CTA — Bottom section"
         file: "_data/cta.json"
         fields:
-          - { label: "Rubrik", name: "title", widget: "string", default: "Let's get started." }
-          - { label: "Undertext", name: "subtitle", widget: "text", default: "Get up and running with a demo account for you or your whole team within days." }
+          - { label: "Headline", name: "title", widget: "string", default: "Let's get started." }
+          - { label: "Subtext", name: "subtitle", widget: "text", default: "Get up and running with a demo account for you or your whole team within days." }
 
       - name: "colors"
-        label: "🎨 Färger"
+        label: "🎨 Colors"
         file: "_data/colors.json"
         fields:
-          - { label: "Accentfärg (grön)", name: "teal", widget: "color", default: "#4BC8A0" }
-          - { label: "Mörkblå (navy)", name: "navy", widget: "color", default: "#1B2D3E" }
-          - { label: "Bakgrund (ljusgrå)", name: "bg", widget: "color", default: "#F8F9FA" }
+          - { label: "Accent color (green)", name: "teal", widget: "color", default: "#4BC8A0" }
+          - { label: "Dark blue (navy)", name: "navy", widget: "color", default: "#1B2D3E" }
+          - { label: "Background (light grey)", name: "bg", widget: "color", default: "#F8F9FA" }
