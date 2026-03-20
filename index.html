@@ -433,6 +433,19 @@
       if (d.navy) root.style.setProperty('--navy', d.navy);
       if (d.bg)   root.style.setProperty('--bg', d.bg);
     }).catch(() => {});
+ // Load footer data
+  fetch('_data/footer.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(d => {
+      const terms = document.querySelector('[data-cms="footer_terms_url"]');
+      if (terms) { terms.href = d.terms_url; terms.textContent = d.terms_text; }
+      const security = document.querySelector('[data-cms="footer_security_url"]');
+      if (security) { security.href = d.security_url; security.textContent = d.security_text; }
+      const privacy = document.querySelector('[data-cms="footer_privacy_url"]');
+      if (privacy) { privacy.href = d.privacy_url; privacy.textContent = d.privacy_text; }
+      const email = document.querySelector('[data-cms="footer_email_link"]');
+      if (email) { email.href = 'mailto:' + d.email; email.textContent = d.email; }
+    }).catch(() => {});
 </script>
 
 </body>
