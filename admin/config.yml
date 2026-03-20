@@ -163,3 +163,14 @@ collections:
           - { label: "Accent color (green)", name: "teal", widget: "color", default: "#4BC8A0" }
           - { label: "Dark blue (navy)", name: "navy", widget: "color", default: "#1B2D3E" }
           - { label: "Background (light grey)", name: "bg", widget: "color", default: "#F8F9FA" }
+          - name: "footer"
+        label: "🔗 Footer — Links"
+        file: "_data/footer.json"
+        fields:
+          - { label: "Terms & Conditions — text", name: "terms_text", widget: "string" }
+          - { label: "Terms & Conditions — link", name: "terms_url", widget: "string" }
+          - { label: "Information Security — text", name: "security_text", widget: "string" }
+          - { label: "Information Security — link", name: "security_url", widget: "string" }
+          - { label: "Privacy Policy — text", name: "privacy_text", widget: "string" }
+          - { label: "Privacy Policy — link", name: "privacy_url", widget: "string" }
+          - { label: "Email address", name: "email", widget: "string" }
